@@ -66,6 +66,7 @@ export function LiquidLensNav() {
       const k = stiffnessForDistance(Math.abs(toX - from));
       x.tune(k, dampingForStiffness(k));
       x.target = toX;
+      console.log('[lens] select', next, 'toX', toX);
       selection = next;
       selectionRef.current = next;
       setSelected(next);
@@ -85,6 +86,7 @@ export function LiquidLensNav() {
     function onDown(ev: PointerEvent) {
       const { px, py } = localPoint(ev);
       const hit = hitTest(px, py, layout);
+      console.log('[lens] down', px, py, JSON.stringify(hit), 'sel', selection, 'x', x.x);
       if (!hit) return;
       canvas.setPointerCapture(ev.pointerId);
       pointerId = ev.pointerId;
