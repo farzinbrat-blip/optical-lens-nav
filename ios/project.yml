@@ -1,0 +1,22 @@
+# XcodeGen spec: `brew install xcodegen && cd ios && xcodegen generate && open LiquidGlassNav.xcodeproj`
+name: LiquidGlassNav
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "16.0"
+targets:
+  LiquidGlassNav:
+    type: application
+    platform: iOS
+    sources:
+      - path: LiquidGlassNav
+    info:
+      path: LiquidGlassNav/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.LiquidGlassNav
+        SWIFT_VERSION: "5.9"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        MTL_FAST_MATH: YES
+        INFOPLIST_FILE: LiquidGlassNav/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
