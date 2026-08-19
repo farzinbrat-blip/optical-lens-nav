@@ -183,7 +183,7 @@ export function LiquidLensNav() {
         radius: (h / 2) * 0.94 * dpr,
         mag: 1.10 + 0.20 * l,
         refract: 0.22 + 0.20 * l,
-        chroma: 0.18 + 0.62 * l + Math.abs(speed) * 0.6,
+        chroma: 0.18 + 0.62 * l + Math.abs(speed) * 0.35,
         chromaDirX: speed * 0.9 + 0.28,
         chromaDirY: -0.45,
         alpha: alpha.x,

@@ -243,13 +243,12 @@ export class NavScene {
 
     if (active) {
       ctx.save();
-      ctx.shadowColor = "rgba(64,235,150,0.85)";
+      ctx.shadowColor = "rgba(64,235,150,0.55)";
       ctx.shadowBlur = 16;
       ctx.beginPath();
       ctx.arc(cx, cy, r - 1, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(90,240,165,0.95)";
+      ctx.strokeStyle = "rgba(96,232,168,0.8)";
       ctx.lineWidth = 2;
-      ctx.stroke();
       ctx.stroke();
       ctx.restore();
       const rg = ctx.createRadialGradient(cx, cy, r * 0.7, cx, cy, r * 1.7);

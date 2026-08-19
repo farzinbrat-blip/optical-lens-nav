@@ -48,7 +48,7 @@ export function computeLayout(width: number, height: number, dpr: number, safeBo
     centerY,
     profile: { cx: island.x + islandW + gap + profileD / 2, cy: centerY, r: profileD / 2 },
     lensRest: { w: lensW, h: lensH, r: lensH / 2 },
-    lensLift: { w: lensW * 1.26, h: lensH * 1.34, r: (lensH * 1.34) / 2, dy: -16 },
+    lensLift: { w: lensW * 1.32, h: lensH * 1.2, r: (lensH * 1.2) / 2, dy: -15 },
   };
 }
 
