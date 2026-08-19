@@ -30,17 +30,14 @@ export function drawChats(ctx: Ctx, cx: number, cy: number, s: number, color: st
 export function drawCalls(ctx: Ctx, cx: number, cy: number, s: number, color: string) {
   ctx.save();
   ctx.translate(cx, cy);
-  ctx.rotate(-Math.PI / 4);
-  const len = s * 0.98;
-  const cap = s * 0.3;
+  ctx.rotate(Math.PI * 0.12);
+  const r = s * 0.42;
   ctx.beginPath();
-  ctx.moveTo(-cap / 2, -len / 2);
-  ctx.lineTo(cap / 2, -len / 2);
-  ctx.moveTo(0, -len / 2);
-  ctx.bezierCurveTo(s * 0.34, -len * 0.16, s * 0.34, len * 0.16, 0, len / 2);
-  ctx.moveTo(-cap / 2, len / 2);
-  ctx.lineTo(cap / 2, len / 2);
-  stroke(ctx, color, s * 0.13);
+  ctx.arc(0, 0, r, Math.PI * 0.08, Math.PI * 0.92, false);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = s * 0.26;
+  ctx.lineCap = "round";
+  ctx.stroke();
   ctx.restore();
 }
 

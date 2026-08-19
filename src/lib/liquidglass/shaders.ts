@@ -71,7 +71,7 @@ void main() {
   ) + 1e-6);
 
   float minHalf = min(uHalf.x, uHalf.y);
-  float thickness = minHalf * 0.92;
+  float thickness = minHalf * 0.58;
   float t = clamp(-d / thickness, 0.0, 1.0);      // 0 at rim, 1 at core
 
   // spherical glass height profile -> bending concentrated near the rim
