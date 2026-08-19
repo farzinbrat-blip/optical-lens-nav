@@ -99,7 +99,7 @@ export class NavScene {
   }
 
   private paintList(ctx: CanvasRenderingContext2D, layout: NavLayout) {
-    const names = [
+    const names: [string, string, string][] = [
       ["Nargiza", "Bugun kelasizmi?", "9:41"],
       ["Design Team", "Lens radius 1.24x looks right", "9:12"],
       ["Bekzod", "Metal shader ishladi 🔥", "8:57"],
@@ -115,11 +115,11 @@ export class NavScene {
     const rowH = 72;
     ctx.textBaseline = "middle";
     for (let i = 0; i < names.length && y < layout.height - 40; i++) {
-      const [name, msg, time] = names[i];
+      const [name, msg, time] = names[i]!;
       const cy = y + rowH / 2;
       const ag = ctx.createLinearGradient(20, cy - 24, 68, cy + 24);
-      ag.addColorStop(0, `hsl(${hues[i]} 85% 62%)`);
-      ag.addColorStop(1, `hsl(${hues[i] + 28} 80% 44%)`);
+      ag.addColorStop(0, `hsl(${hues[i]!} 85% 62%)`);
+      ag.addColorStop(1, `hsl(${hues[i]! + 28} 80% 44%)`);
       ctx.fillStyle = ag;
       ctx.beginPath();
       ctx.arc(46, cy, 25, 0, Math.PI * 2);
@@ -196,9 +196,9 @@ export class NavScene {
     TABS.forEach((label, i) => {
       const active = selected === i;
       const color = active ? "rgba(255,255,255,0.98)" : "rgba(178,186,220,0.72)";
-      const cx = layout.tabCenters[i];
+      const cx = layout.tabCenters[i]!;
       const cy = r.y + r.h * 0.38;
-      TAB_ICONS[i](ctx, cx, cy, iconSize, color);
+      TAB_ICONS[i]!(ctx, cx, cy, iconSize, color);
       ctx.fillStyle = color;
       ctx.font = `${active ? 600 : 500} 10px -apple-system, system-ui, sans-serif`;
       ctx.fillText(label, cx, r.y + r.h * 0.79);
