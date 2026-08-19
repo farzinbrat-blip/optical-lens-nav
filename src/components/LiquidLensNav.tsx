@@ -14,8 +14,9 @@ export function LiquidLensNav() {
   const applyRef = useRef<(s: Selection) => void>(() => {});
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const canvasEl = canvasRef.current;
+    if (!canvasEl) return;
+    const canvas: HTMLCanvasElement = canvasEl;
 
     let renderer: LensRenderer;
     try {
