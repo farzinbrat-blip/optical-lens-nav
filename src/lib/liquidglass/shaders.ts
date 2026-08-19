@@ -96,23 +96,23 @@ void main() {
   vec3 col = vec3(samplePx(pR).r, samplePx(pG).g, samplePx(pB).b);
 
   // crystal body: slight lift in luminance, no milky overlay
-  col *= 1.045;
-  col += vec3(0.012, 0.016, 0.028) * (1.0 - bulge);
+  col *= 1.028;
+  col += vec3(0.008, 0.011, 0.020) * (1.0 - bulge);
 
   // 4a) Fresnel rim (inner glow along the whole silhouette)
   float fres = pow(bulge, 2.6);
-  col += vec3(0.55, 0.72, 1.0) * fres * 0.16;
+  col += vec3(0.45, 0.62, 1.0) * fres * 0.10;
 
   // 4b) directional edge lighting (light from upper-left)
   vec2 L = normalize(vec2(-0.42, -1.0));
   float lambert = max(dot(-n, L), 0.0);
-  col += vec3(0.9, 0.95, 1.0) * pow(lambert, 2.2) * fres * 0.30;
+  col += vec3(0.88, 0.94, 1.0) * pow(lambert, 2.4) * fres * 0.20;
 
   // 4c) thin bright optical highlight along the upper edge
   float upper = max(dot(n, vec2(0.0, -1.0)), 0.0);
   float band = smoothstep(0.55, 1.0, bulge);
-  float hl = pow(upper, 3.5) * band;
-  col += vec3(1.0, 1.0, 1.0) * hl * (0.55 + uLift * 0.25);
+  float hl = pow(upper, 5.0) * smoothstep(0.72, 1.0, bulge);
+  col += vec3(1.0, 1.0, 1.0) * hl * (0.38 + uLift * 0.22);
 
   // faint dark refracted lip on the lower edge (glass thickness)
   float lower = max(dot(n, vec2(0.0, 1.0)), 0.0);

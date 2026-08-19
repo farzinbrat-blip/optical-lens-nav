@@ -168,7 +168,7 @@ export class NavScene {
     ctx.shadowBlur = 26;
     ctx.shadowOffsetY = 10;
     this.roundRect(ctx, r.x, r.y, r.w, r.h, rad);
-    ctx.fillStyle = "rgba(0,0,0,0.001)";
+    ctx.fillStyle = "rgba(6,8,20,0.85)";
     ctx.fill();
     ctx.restore();
 
