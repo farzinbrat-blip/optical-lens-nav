@@ -34,6 +34,8 @@ export function LiquidLensNav() {
     const alpha = new Spring(1, 320, dampingForStiffness(320, 0.95));
 
     let dragging = false;
+    let didDrag = false;
+    let downX = 0;
     let pointerId = -1;
     let selection: Selection = selectionRef.current;
     let lastT = performance.now();
@@ -91,6 +93,8 @@ export function LiquidLensNav() {
         return;
       }
       dragging = true;
+      didDrag = false;
+      downX = px;
       if (selection === "profile") {
         // lens must originate from the profile button and travel back in
         x.set(layout.profile.cx);
@@ -104,6 +108,8 @@ export function LiquidLensNav() {
     function onMove(ev: PointerEvent) {
       if (!dragging || ev.pointerId !== pointerId) return;
       const { px } = localPoint(ev);
+      if (Math.abs(px - downX) > 6) didDrag = true;
+      if (!didDrag) return;
       const now = performance.now();
       const dt = Math.max(0.001, (now - lastT) / 1000);
       const minX = layout.island.x + layout.lensRest.w * 0.5;
@@ -121,7 +127,8 @@ export function LiquidLensNav() {
       dragging = false;
       const { px, py } = localPoint(ev);
       const overProfile = Math.hypot(px - layout.profile.cx, py - layout.profile.cy) <= layout.profile.r + 10;
-      const next: Selection = overProfile ? "profile" : nearestTab(x.x, layout);
+      // a tap keeps the tab chosen on press-down; only a real drag re-snaps
+      const next: Selection = overProfile ? "profile" : didDrag ? nearestTab(x.x, layout) : selection;
       const toX = next === "profile" ? layout.profile.cx : layout.tabCenters[next]!;
       const k = stiffnessForDistance(Math.abs(toX - x.x));
       x.tune(k, dampingForStiffness(k));
@@ -170,7 +177,7 @@ export function LiquidLensNav() {
 
       renderer.draw({
         cx: x.x * dpr,
-        cy: cy * dpr,
+        cy: (cy + 2) * dpr,
         hw: (w / 2) * dpr,
         hh: (h / 2) * dpr,
         radius: (h / 2) * 0.94 * dpr,
