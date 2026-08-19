@@ -35,7 +35,7 @@ export function computeLayout(width: number, height: number, dpr: number, safeBo
   const centerY = islandY + islandH / 2;
 
   const lensW = Math.min(tabWidth - 4, 92);
-  const lensH = islandH - 16;
+  const lensH = islandH - 9;
 
   return {
     width,
